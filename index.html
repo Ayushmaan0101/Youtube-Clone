@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=-1.0">
+    <title>Youtube Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="Images/youtubefavicon.png">
+
+</head>
+<body id="bg">
+    
+    <div id="toggle-container">
+        <label class="switch">
+            <input type="checkbox" id="mode-toggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    
+  
+    <script>
+      
+        const modeToggle = document.getElementById("mode-toggle");
+    
+   
+        modeToggle.addEventListener("change", function() {
+            if (this.checked) {
+                // Dark Mode
+                document.body.classList.add("dark-mode");
+                document.body.classList.remove("light-mode", "sepia-mode");
+            } else {
+                // Light Mode
+                document.body.classList.add("light-mode");
+                document.body.classList.remove("dark-mode", "sepia-mode");
+            }
+        });
+       
+
+
+function setMode(mode) {
+    document.body.className = mode;
+   
+    const toggleSwitch = document.querySelector('.switch input');
+    toggleSwitch.checked = mode === 'dark-mode';
+   
+    localStorage.setItem('mode', mode);
+}
+
+
+const storedMode = localStorage.getItem('mode');
+if (storedMode) {
+    setMode(storedMode); 
+}
+
+
+const toggleSwitch = document.querySelector('.switch input');
+toggleSwitch.addEventListener('change', () => {
+    const newMode = toggleSwitch.checked ? 'dark-mode' : 'light-mode'; 
+    setMode(newMode);
+});
+
+
+</script>
+    
+    <div id="Rightlogos">
+        <div class="searchbar">
+            <input type="text" placeholder="Search">
+            <i class="fa-solid fa-magnifying-glass large-icon" style="color: #8f8f8f;"></i>
+        </div>
+        
+        <img class="Profilelogo" src="Code/Images/Profilelogo.jpg" alt="Profile Logo">
+        
+        <svg class="Bellicon" width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.4706 14.0875L15.4721 14.0855C14.7618 13.375 13.86 12.3393 13.86 9.35281C13.86 9.34729 13.8597 9.34267 13.8597 9.33735V7.03417C13.8597 4.24139 11.9046 1.90681 9.28849 1.32068C9.28879 1.30944 9.2903 1.2984 9.2903 1.28706C9.2903 0.576296 8.714 0 8.00334 0C7.29257 0 6.71628 0.576296 6.71628 1.28706C6.71628 1.2984 6.71768 1.30944 6.71788 1.32078C4.10182 1.90681 2.14654 4.24139 2.14654 7.03417V9.35281C2.14654 12.3392 1.24471 13.375 0.534353 14.0855L0.535859 14.0873C0.20702 14.3924 0 14.8269 0 15.3109C0 16.2334 0.747997 16.9813 1.67039 16.9813H14.336C15.2585 16.9813 16.0064 16.2334 16.0064 15.3109C16.0065 14.8271 15.7993 14.3924 15.4706 14.0875Z" fill="white"/>
+            <path d="M9.88167 17.472H6.12505C5.94583 17.472 5.77725 17.5567 5.67028 17.7007C5.56331 17.8445 5.5307 18.0303 5.58247 18.202C5.89566 19.2422 6.8611 20 8.00346 20C9.14582 20 10.1111 19.2422 10.4243 18.202C10.4761 18.0303 10.4432 17.8444 10.3364 17.7007C10.2295 17.5567 10.0609 17.472 9.88167 17.472Z" fill="white"/>
+        </svg>
+        <img class="Youtubelogom" src="Code/Images/Youtube-Logo-PNG.png" alt="Youtube logo">
+
+        
+        <svg class="VideoCamera" width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.559 1.88794C20.4561 1.82824 20.3394 1.79661 20.2205 1.7962C20.1015 1.79579 19.9846 1.82663 19.8813 1.88562L16.1441 4.02119V3.49373C16.143 2.59361 15.785 1.73065 15.1485 1.09417C14.512 0.45769 13.6491 0.0996626 12.749 0.0986328H1.88465C1.5246 0.0990446 1.17942 0.242256 0.924826 0.496848C0.670234 0.75144 0.527023 1.09662 0.526611 1.45667V9.6049C0.527641 10.505 0.885668 11.368 1.52215 12.0045C2.15863 12.6409 3.02159 12.999 3.92171 13H14.786C15.1461 12.9996 15.4912 12.8564 15.7458 12.6018C16.0004 12.3472 16.1436 12.002 16.1441 11.642V9.07745L19.8813 11.213C19.9846 11.272 20.1015 11.3028 20.2205 11.3024C20.3394 11.302 20.4561 11.2704 20.559 11.2107C20.6619 11.151 20.7472 11.0653 20.8066 10.9623C20.8659 10.8592 20.8972 10.7424 20.8972 10.6234V2.4752C20.8972 2.35627 20.866 2.23942 20.8066 2.13635C20.7473 2.03329 20.6619 1.94762 20.559 1.88794ZM14.786 11.642H3.92171C3.38164 11.6413 2.86386 11.4265 2.48197 11.0446C2.10008 10.6628 1.88527 10.145 1.88465 9.6049V1.45667H12.749C13.289 1.45729 13.8068 1.67211 14.1887 2.05399C14.5706 2.43588 14.7854 2.95366 14.786 3.49373L14.7862 5.20135C14.7862 5.20371 14.7861 5.20607 14.7862 5.20844L14.7865 7.88632C14.7863 7.8934 14.7865 7.90047 14.7865 7.90755L14.7868 11.642H14.786ZM19.5392 9.45338L16.1441 7.51329V5.58534L19.5392 3.64525V9.45338Z" fill="white"/>
+        </svg>
+
+        <svg class="hamburgermenu"xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><style>svg{fill:#ffffff}</style><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
+        <svg class="home"xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><style>svg{fill:#ffffff}</style><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
+        <p class="hometext">Home</p>
+        <svg class="mic"xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512"><style>svg{fill:#fafafa}</style><path d="M192 0C139 0 96 43 96 96V256c0 53 43 96 96 96s96-43 96-96V96c0-53-43-96-96-96zM64 216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 89.1 66.2 162.7 152 174.4V464H120c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H216V430.4c85.8-11.7 152-85.3 152-174.4V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 70.7-57.3 128-128 128s-128-57.3-128-128V216z"/></svg>
+        <p class="subscriptionstext">Subscriptions</p>
+        <img class="Youtubelogo" src="Code/Images/Youtube-Logo-PNG.png" alt="Youtube logo">
+        
+         <svg class="subscriptions" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M13.6 4.8H2.4C1.96 4.8 1.6 4.44 1.6 4C1.6 3.56 1.96 3.2 2.4 3.2H13.6C14.04 3.2 14.4 3.56 14.4 4C14.4 4.44 14.04 4.8 13.6 4.8ZM12 0H4C3.56 0 3.2 0.36 3.2 0.8C3.2 1.24 3.56 1.6 4 1.6H12C12.44 1.6 12.8 1.24 12.8 0.8C12.8 0.36 12.44 0 12 0ZM16 8V14.4C16 15.28 15.28 16 14.4 16H1.6C0.72 16 0 15.28 0 14.4V8C0 7.12 0.72 6.4 1.6 6.4H14.4C15.28 6.4 16 7.12 16 8ZM10.552 10.848L6.4 8.584V13.808L10.552 11.552C10.832 11.4 10.832 11 10.552 10.848Z" fill="white"/>
+        </svg>
+      
+        <svg class="you-icon" width="40" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M3.91436 0H15.3576C17.5185 0.00244329 19.2695 1.75349 19.272 3.91411V12.0857C19.2695 14.2465 17.5185 15.9976 15.3578 16H3.91435C1.75348 15.9976 0.00242405 14.2465 0 12.0859V3.91435C0.00244329 1.75347 1.75374 0.00242405 3.91436 0ZM15.3576 14.7152C16.8093 14.7138 17.9857 13.5374 17.9872 12.0858V3.91438C17.9857 2.4627 16.8093 1.28629 15.3578 1.28483H3.91438C2.4627 1.28629 1.28629 2.4627 1.28482 3.91423V12.0857C1.28629 13.5374 2.4627 14.7138 3.91423 14.7152H15.3576ZM5.72163 3.68823L14.3469 8.00003L5.72165 12.3118L5.72163 3.68823ZM11.4716 8.00003L7.00647 5.7679V10.233L11.4716 8.00003Z" fill="#FFFCFC"/>
+             
+        </svg>
+        <p class="you-text">You</p>
+
+
+    
+        
+       
+<!-- video 1 -->
+    </div>
+    
+    <div class="VideoContainer">
+        
+    <a href="https://youtu.be/bqbsj3muUEY?si=YyVTklQW1763L5zc">
+        <img class="thumbnail1" src="Code/Images/Thumbnail1.webp" alt="Thumbnail">
+    </a>
+    <div class="ChannelLogo">
+        <a href="https://youtube.com/@KanishkGupta?si=FPBsz-6ReXbetzNg">
+            <img class="ChannelLogo" src="Code/Images/1.jpg" alt="Channel Logo">
+        </a>
+    </div>
+    <div class="VideoInfo">
+        <h3 class="Title1">Key Monastery: Life of Monks at Remotest Place of India | Spiti Stories EP-01</h3>
+        <p class="name1">Kanishk Gupta</p>
+        <p class="stat1">10 lakh views &#183; 1 year ago</p>
+    </div>
+        
+            
+    </div>
+
+
+
+<!-- video 2 -->
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/mwKJfNYwvm8?si=LPea2CM-Y3XY4R">
+    <img class="thumbnail1" src="Code/Images/Mrbeast.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@MrBeast?si=pGgYIZJo589xzPju">
+        <img class="ChannelLogo" id="mrbeast"src="Code/Images/2.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">Every Country On Earth Fights For $250,000!</h3>
+    <p class="name1">MrBeast</p>
+    <p class="stat1">14 crore views &#183; 2 months ago</p>
+</div>
+
+
+
+<!-- video 3 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/Dzd2IPPwrSw?si=ttfuHV1uDB9axiy4">
+    <img class="thumbnail1" src="Code/Images/Gym.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@Browney?si=c38JEVTJmCBMDZ2">
+        <img class="ChannelLogo" src="Code/Images/3.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">I Built a Primitive Gym In 50 Hours</h3>
+    <p class="name1x">Browney</p>
+    <p class="stat1x">19 lakh views &#183; 2 weeks ago</p>
+</div>
+
+
+
+
+    
+
+<!-- video 4 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://www.youtube.com/live/U9mJuUkhUzk?si=LruoUcNjfTOfVWQa">
+    <img class="thumbnail1" src="Code/Images/Sama.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@OpenAI?si=A2T8AcQE9fLxfGG1">
+        <img class="ChannelLogo" src="Code/Images/4.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">OpenAI DevDay, Opening Keynote</h3>
+    <p class="name1x">OpenAI</p>
+    <p class="stat1x">6.6 lakh views &#183; Streamed 22 hours ago</p>
+</div>
+
+
+<!-- video 5 -->
+    
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/bO-DWWFolPw?si=Mk0rmcJBcKtGZhrS">
+    <img class="thumbnail1" src="Code/Images/Robot.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@WorkshopNation?si=05FWXKpLkVPHP6dW">
+        <img class="ChannelLogo" src="Code/Images/5.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">The coolest robot I've ever built!</h3>
+    <p class="name1x">Thomas Burns</p>
+    <p class="stat1x">28 lakh views &#183; 4 months ago</p>
+</div>
+
+    
+<!-- video 6 -->
+
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/2IyJIZHgRvw?si=sw05FpQhUUR-RtFk">
+    <img class="thumbnail1" src="Code/Images/Elonmusk.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@Newsthink?si=Xfhj5c_rmyiEcPLv">
+        <img class="ChannelLogo" src="Code/Images/6.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">Why Elon Musk Started a School at His House</h3>
+    <p class="name1">Newsthink</p>
+    <p class="stat1">9.4 lakh views &#183; 10 months ago</p>
+</div>
+
+<!-- video 7 -->
+
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/TkwXa7Cvfr8?si=yKyPHs8c2uSAh9HP">
+    <img class="thumbnail1" src="Code/Images/NeuralNetworks.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@EmergentGarden?si=-4hrKAfySjuTvVOL">
+        <img class="ChannelLogo" src="Code/Images/7.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">Watching Neural Networks Learn</h3>
+    <p class="name1x">Emergent Garden</p>
+    <p class="stat1x">6.2 lakh views &#183; 2 months ago</p>
+</div>
+
+
+<!-- video 8 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/d5XwwDPA5do?si=UJMIjpS8qvZWhe4O">
+    <img class="thumbnail1" src="Code/Images/Evolution.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@thefoosterchannel?si=8y4b_IPEuYSqP6qU">
+        <img class="ChannelLogo" src="Code/Images/8.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">This Is What 8,000,000 Years of Evolution Looks Like!</h3>
+    <p class="name1">Fooster</p>
+    <p class="stat1">15 lakh views &#183; 7 months ago</p>
+</div>
+
+
+<!-- video 9 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/D2vj0WcvH5c?si=1ec0vSzMzY97LqEc">
+    <img class="thumbnail1" src="Code/Images/Optimus.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@tesla?si=yGfvpA0No8A21DlF">
+        <img class="ChannelLogo" src="Code/Images/9.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">Tesla Bot Update | Sort & Stretch</h3>
+    <p class="name1x">Tesla</p>
+    <p class="stat1x">16 lakh views &#183; 1 month ago</p>
+</div>
+
+<!-- video 10 -->
+
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/WU0gvPcc3jQ?si=o8V5jaLKt1sdR2l_">
+    <img class="thumbnail1" src="Code/Images/Matrix.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@UnrealEngine?si=5AbQhU-9pvBTUayV">
+        <img class="ChannelLogo" src="Code/Images/10.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">The Matrix Awakens: An Unreal Engine 5 Experience</h3>
+    <p class="name1">Unreal Engine</p>
+    <p class="stat1">79 lakh views &#183; 1 year ago</p>
+</div>
+
+<!-- video 11 -->
+
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/eTgNgGO_bLs?si=vVkJeUWMyDiq46jS">
+    <img class="thumbnail1" src="Code/Images/Sleep.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@TheEconomist?si=YMJ2hlLy9hnsk58t">
+        <img class="ChannelLogo" src="Code/Images/11.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1x">What happens when we sleep?</h3>
+    <p class="name1">The Economist</p>
+    <p class="stat1">97 lakh views &#183; 4 years ago</p>
+</div>
+
+<!-- video 12 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/TSJEKU9qKJI?si=hSdPutRIeP78L_OM">
+    <img class="thumbnail1" src="Code/Images/Breakingbad.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@popcorners?si=krVkXwAE_8MgTFw9">
+        <img class="ChannelLogo" src="Code/Images/12.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">PopCorners Breaking Bad Super Bowl Commercial – Extended Version​!</h3>
+    <p class="name1">PopCorners</p>
+    <p class="stat1">50 lakh views &#183; 8 months ago</p>
+</div>
+
+<!-- video 13 -->
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/C1X4joevHsc?si=DSe8gBwuagdUmnFO">
+    <img class="thumbnail1" src="Code/Images/TomCruise.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@OfficialHindiTrailer?si=cGTHpv3ffjmYtwVe">
+        <img class="ChannelLogo" src="Code/Images/14.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">"I have to...Jump?" | The MI7 scene everyone talked about</h3>
+    <p class="name1">Boxoffice Movie Scenes</p>
+    <p class="stat1">12 lakh views &#183; 2 weeks ago</p>
+</div>
+
+<!-- video 14 -->
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/5tLmvjE674k?si=67j6p1I5R83lkaIC">
+    <img class="thumbnail1" src="Code/Images/breakingbadwebp.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@breakingbad?si=MqOogMQYZ2rMaHF3">
+        <img class="ChannelLogo" src="Code/Images/15.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">A Visit To Los Pollos Hermanos | Mandala | Breaking Bad</h3>
+    <p class="name1">Breaking Bad & Better Call Saul</p>
+    <p class="stat1">11 lakh views &#183; 5 months ago</p>
+</div>
+
+<!-- video 15 -->
+
+
+
+</div>
+    
+<div class="VideoContainer">
+    
+<a href="https://youtu.be/lEvDTWZZxdc?si=k96GzlKQQaUCrpiz">
+    <img class="thumbnail1" src="Code/Images/Onepiece.webp" alt="Thumbnail">
+</a>
+<div class="ChannelLogo">
+    <a href="https://youtube.com/@OfficialHindiTrailer?si=cGTHpv3ffjmYtwVe">
+        <img class="ChannelLogo" src="Code/Images/13.jpg" alt="Channel Logo">
+    </a>
+</div>
+<div class="VideoInfo">
+    <h3 class="Title1">ONE PIECE | Official Hindi Trailer | हिन्दी ट्रेलर</h3>
+    <p class="name1">Official Hindi Trailer</p>
+    <p class="stat1">3 lakh views &#183; 3 months ago</p>
+</div>
+
+    
+</body>
+</html>
